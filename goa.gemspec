@@ -8,10 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = GOA::VERSION
   spec.authors       = ["Michael Pearce"]
   spec.email         = ["michael.pearce@bookrenter.com"]
-  spec.description   = %q{GOA utilities}
-  spec.summary       = %q{Gem Oriented Architecture - Build a Rails Engine with ActiveRecord models}
-  spec.homepage      = ""
-  spec.license       = "Proprietary"
+  spec.description   = %q{Gem Oriented Architecture - Share ActiveRecord Models with a Rails Engine}
+  spec.summary       = %q{Gem Oriented Architecture - Share ActiveRecord Models with a Rails Engine.}
+  spec.homepage      = "https://github.com/bkr/goa"
+  spec.license       = "Apache 2.0"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
