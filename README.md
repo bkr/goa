@@ -39,12 +39,12 @@ require 'goa'
 GOA::RakeTasks.new.add_rake_tasks
 ```
 
-You can now execute this:
+You can now execute this in either your Rails engine or Rails application:
 ```ruby
 bundle exec app:db:drop app:db:create app:db:schema:load app:db:migrate app:db:test:prepare
 ```
 
-* Add Models to your gem as you would a rails application, except make sure they all have a common base class:
+* Add Models to your gem as you would a Rails application, except make sure they share a common base class (and common database connection):
 
     app/models/my_goa_gem/base.rb
 
