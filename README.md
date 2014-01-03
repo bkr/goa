@@ -27,24 +27,9 @@ rails plugin new my_goa_gem --mountable
 
 * Configure your database as you would a Rails application:
 
-TODO
+Add a config/database.yml to your application and configure the development, test, production and staging environments as appropriate for your database connection.
 
-* Create a Rakefile in your Rails Engine's lib/tasks folder:
-
-    lib/tasks/my_goa_gem.rake
-
-```ruby
-require 'goa'
-
-GOA::RakeTasks.new.add_rake_tasks
-```
-
-You can now execute this in either your Rails engine or Rails application:
-```ruby
-bundle exec app:db:drop app:db:create app:db:schema:load app:db:migrate app:db:test:prepare
-```
-
-* Add Models to your gem as you would a Rails application, except make sure they share a common base class (and common database connection):
+* Add Models to your gem as you would a Rails application, except make sure they share a common base class and a common database connection:
 
     app/models/my_goa_gem/base.rb
 
@@ -57,6 +42,21 @@ class MyGoaGem::Base < ActiveRecord::Base
   # Establish connection in a base class so all models will share the connection
   establish_connection GOA::Config.database_config(MyGoaGem::Engine.root)
 end
+```
+
+* Create a Rakefile in your Rails Engine's lib/tasks folder:
+
+    lib/tasks/my_goa_gem.rake
+
+```ruby
+require 'goa'
+
+GOA::RakeTasks.new.add_rake_tasks
+```
+
+You can now execute this in either your Rails engine or Rails application to migrate both the Rails application database and the database specified by your GOA gem:
+```ruby
+bundle exec app:db:drop app:db:create app:db:schema:load app:db:migrate app:db:test:prepare
 ```
 
 * Add to your test_helper.rb/spec_helper.rb to clean your database in both your Engine and Application:
