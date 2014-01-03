@@ -19,9 +19,19 @@ Or install it yourself as:
 
 ## Usage
 
+* Create a Rails engine:
+
+```sh
+rails plugin new my_goa_gem --mountable
+```
+
+* Configure your database as you would a Rails application:
+
+TODO
+
 * Create a Rakefile in your Rails Engine's lib/tasks folder:
 
-    my_rails_engine.rake
+    lib/tasks/my_goa_gem.rake
 
 ```ruby
 require 'goa'
@@ -33,10 +43,6 @@ You can now execute this:
 ```ruby
 bundle exec app:db:drop app:db:create app:db:schema:load app:db:migrate app:db:test:prepare
 ```
-
-* Add a fake Rails app to your test/spec directory:
-
-TODO (Generator?)
 
 * Add Models to your gem as you would a rails application, except make sure they all have a common base class:
 
@@ -53,9 +59,9 @@ class MyGoaGem::Base < ActiveRecord::Base
 end
 ```
 
-* Add to your test_helper.rb/spec_helper.rb to clean your database (also requires 'database_cleaner'):
+* Add to your test_helper.rb/spec_helper.rb to clean your database in both your Engine and Application:
 
-Add this into both your client Engine Gem and the application that uses your Engine Gem where MyGoaGem::Base is the base class for your models.
+Add this into both your client Engine Gem and the application that uses your Engine Gem where MyGoaGem::Base is the ActiveRecord base class for your models.
 
 ```ruby
 require 'goa'

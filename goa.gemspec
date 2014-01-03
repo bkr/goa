@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Michael Pearce"]
   spec.email         = ["michael.pearce@bookrenter.com"]
   spec.description   = %q{Gem Oriented Architecture - Share ActiveRecord Models with a Rails Engine}
-  spec.summary       = %q{Gem Oriented Architecture - Share ActiveRecord Models with a Rails Engine.}
+  spec.summary       = %q{Share ActiveRecord models that use a different database connection across separate Rails applications.}
   spec.homepage      = "https://github.com/bkr/goa"
   spec.license       = "Apache 2.0"
 
