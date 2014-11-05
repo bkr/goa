@@ -56,7 +56,7 @@ GOA::RakeTasks.new.add_rake_tasks
 
 You can now execute this in either your Rails engine or Rails application to migrate both the Rails application database and the database specified by your GOA gem:
 ```ruby
-bundle exec app:db:drop app:db:create app:db:schema:load app:db:migrate app:db:test:prepare
+bundle exec rake app:db:drop app:db:create app:db:schema:load app:db:migrate app:db:test:prepare
 ```
 
 * Add to your test_helper.rb/spec_helper.rb to clean your database in both your Engine and Application:
