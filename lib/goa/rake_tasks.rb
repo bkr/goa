@@ -51,7 +51,7 @@ class GOA::RakeTasks
       end
 
       task :setup do
-        %w(db:load_config db:structure:load db:test:purge db:schema:load db:schema:dump db:test:load_structure db:test:clone_structure).each do |name|
+        %w(db:load_config db:structure:load db:schema:load db:schema:dump).each do |name|
           Rake::Task[name].reenable
         end
 
