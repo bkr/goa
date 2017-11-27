@@ -47,11 +47,10 @@ class GOA::RakeTasks
         @orig_db_config = Rails.application.config.paths['config/database']
         @orig_schema_format = ActiveRecord::Base.schema_format
         @orig_env_schema = ENV['SCHEMA']
-        @orig_env_structure = ENV['DB_STRUCTURE']
       end
 
       task :setup do
-        %w(db:load_config db:structure:load db:test:purge db:schema:load db:schema:dump db:test:load_structure db:test:clone_structure).each do |name|
+        %w(db:load_config db:structure:load db:schema:load db:schema:dump).each do |name|
           Rake::Task[name].reenable
         end
 
@@ -65,8 +64,8 @@ class GOA::RakeTasks
         end
         ActiveRecord::Base.schema_format = schema_format if schema_format
 
-        ENV['SCHEMA'] = File.join(engine_root, 'db', 'schema.rb')
-        ENV['DB_STRUCTURE'] = File.join(engine_root, 'db', 'structure.sql')
+        schema_file_name = schema_format == :sql ? 'structure.sql' : 'schema.rb'
+        ENV['SCHEMA'] = File.join(engine_root, 'db', schema_file_name)
 
         reset_current_config
         Rake::Task["db:load_config"].execute # load config after we made our changes
@@ -89,7 +88,6 @@ class GOA::RakeTasks
         ActiveRecord::Base.schema_format = @orig_schema_format
 
         ENV['SCHEMA'] = @orig_env_schema
-        ENV['DB_STRUCTURE'] = @orig_env_structure
 
         Rake::Task["db:load_config"].tap { |t| t.execute; t.reenable } # restore original config after done
 
