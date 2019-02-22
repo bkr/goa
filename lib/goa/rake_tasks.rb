@@ -101,7 +101,7 @@ class GOA::RakeTasks
       desc "Run #{name} for app and model gems"
       task "app:#{name}" => ["#{engine_task_namespace}:#{name}", name]
 
-      task "#{engine_task_namespace}:#{name}" => ["#{engine_task_namespace}:startup", "#{engine_task_namespace}:setup"] do
+      task "#{engine_task_namespace}:#{name}" => [:environment, "#{engine_task_namespace}:startup", "#{engine_task_namespace}:setup"] do
         Rake::Task["#{engine_task_namespace}:setup"].reenable
         Rake::Task["#{engine_task_namespace}:teardown"].execute
       end
