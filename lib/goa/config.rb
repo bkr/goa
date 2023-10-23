@@ -5,7 +5,7 @@ class GOA::Config
     def database_config_file_path(engine_root)
       path = "config/database.yml"
 
-      path = "#{path}.#{Rails.env}" if File.exists?(File.join(engine_root, "#{path}.#{Rails.env}"))
+      path = "#{path}.#{Rails.env}" if File.exist?(File.join(engine_root, "#{path}.#{Rails.env}"))
 
       File.join(engine_root, path)
     end
@@ -15,7 +15,7 @@ class GOA::Config
 
       env_key = config_override_env || Rails.env
 
-      YAML.load(ERB.new(File.read(database_config_file_path(engine_root))).result)[env_key].symbolize_keys
+      YAML.load(ERB.new(File.read(database_config_file_path(engine_root))).result, aliases: true)[env_key].symbolize_keys
     end
   end
 end
